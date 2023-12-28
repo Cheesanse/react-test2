@@ -159,6 +159,23 @@ expect(n).not.toBeUndefined();
 对公用方法单元测试时，应该尽量多的添加测试用例，测试各种情况，充分应用jest的匹配函数。
 进行组件测试时要以用户为中心，通过代码如实模拟用户在页面上的操作。
 
+```js
+describe('getArrayIndex(data, sField, sValue)', () => {
+  const DATA1 = [{ id: '1' }, { id: '2' }];
+  const DATA2 = [{ id: '1' }, { id: '2' }, { id: '2' }];
+  describe.each([
+    { data: DATA1, sField: 'id', sValue: 2, expected: -1, describe: 'value 类型不同' },
+    { data: DATA1, sField: 'ID', sValue: '2', expected: -1, describe: 'sField字段名大小写不同' },
+    { data: DATA2, sField: 'id', sValue: '2', expected: 1, describe: '重复匹配返回最后一个' },
+    { data: DATA1, sField: 'id', sValue: '3', expected: -1, describe: '没有匹配项' },
+  ])('$describe', ({ data, sField, sValue, expected }) => {
+    test(`getArrayIndex(${JSON.stringify(data)}, ${sField}, ${sValue}) return: ${expected}`, () => {
+      expect(getArrayIndex(data, sField, sValue)).toBe(expected);
+    });
+  });
+});
+```
+
 
 
 
