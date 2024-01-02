@@ -74,7 +74,7 @@ module.exports = {
 在项目的test目录下添加`.test.ts`文件
 
 ### describe块
-`describe(name, fn)`创建一个包含相关测试簇的块，第一个参数是测试描述，第二个参数是毁掉函数。
+`describe(name, fn)`创建一个包含相关测试簇的块，第一个参数是测试描述，第二个参数是回调函数。
 
 ### test块
 `test(name, fn, timeout)`运行一个测试。前两个参数与`describe`类似，第三个参数可选，表示等待多长时间推出测试，默认5秒。
